@@ -152,12 +152,19 @@ pipes = {
 			var p = this._pipes[i];
 
 			if (i === 0) {
+				//detect if bird is off screen and hits pipe
+				if ((p.x == bird.x) && (bird.y < 30) ){
+					currentstate = states.Score;
+					score--;
+				}
 
 				score += p.x === bird.x ? 1 : 0;
 
 				// collision check, calculates x/y difference and
 				// use normal vector length calculation to determine
 				// intersection
+
+
 				var cx  = Math.min(Math.max(bird.x, p.x), p.x+p.width);
 				var cy1 = Math.min(Math.max(bird.y, p.y), p.y+p.height);
 				var cy2 = Math.min(Math.max(bird.y, p.y+p.height+80), p.y+2*p.height+80);
@@ -246,7 +253,7 @@ function onpress(evt) {
 /**
  * Starts and initiate the game
  */
-function main(theDoc) {
+function main() {
 	// create canvas and set width/height
 	canvas = document.createElement("canvas");
 
