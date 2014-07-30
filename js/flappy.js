@@ -370,4 +370,3 @@ function render() {
 window.onload = function () {
 	main();
 };
-//main();
