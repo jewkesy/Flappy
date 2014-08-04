@@ -213,7 +213,8 @@ pipes = {
  * @param  {MouseEvent/TouchEvent} evt tho on press event
  */
 function onpress(evt) {
-
+//console.log(evt)
+//document.getElementById("consoleMe").innerHTML = evt.type;
 	switch (currentstate) {
 
 		// change state and update bird velocity
@@ -229,25 +230,34 @@ function onpress(evt) {
 
 		// change state if event within okbtn bounding box
 		case states.Score:
+
 			// get event position
-			var mx = evt.offsetX, my = evt.offsetY;
+// 			var mx = evt.offsetX, my = evt.offsetY;
 
-			if (mx == null || my == null) {
-				mx = evt.touches[0].clientX;
-				my = evt.touches[0].clientY;
-			}
+// 			if (mx == null || my == null) {
+// 				mx = evt.touches[0].clientX;
+// 				my = evt.touches[0].clientY;
+// 			}
+// document.getElementById("consoleMe").innerHTML = okbtn.x;
+// document.getElementById("consoleMe").innerHTML += " " + okbtn.y;
+// document.getElementById("consoleMe").innerHTML += " " + mx;
+// document.getElementById("consoleMe").innerHTML += " " + my;
+// document.getElementById("consoleMe").innerHTML += " " + okbtn.width;
+// document.getElementById("consoleMe").innerHTML += " " + okbtn.height;
+// 			// check if within
+// 			if (okbtn.x < mx && mx < okbtn.x + okbtn.width &&
+// 				okbtn.y < my && my < okbtn.y + okbtn.height
+// 			) {
 
-			// check if within
-			if (okbtn.x < mx && mx < okbtn.x + okbtn.width &&
-				okbtn.y < my && my < okbtn.y + okbtn.height
-			) {
 				pipes.reset();
 				currentstate = states.Splash;
 				score = 0;
-			}
+			//}
+
 			break;
 
 	}
+	evt.preventDefault();
 }
 
 /**
@@ -260,7 +270,7 @@ function main() {
 	width = window.innerWidth;
 	height = window.innerHeight;
 
-	var evt = "touchstart";
+	var evt = "touchStart";
 	if (width >= 500) {
 		width  = 320;
 		height = 480;
@@ -270,6 +280,7 @@ function main() {
 
 	// listen for input event
 	document.addEventListener(evt, onpress);
+	document.addEventListener("touchstart", onpress)
 
 	canvas.width = width;
 	canvas.height = height;
@@ -305,6 +316,7 @@ function main() {
  */
 function run() {
 	var loop = function() {
+//document.getElementById("consoleMe").innerHTML = frames;
 		update();
 		render();
 		window.requestAnimationFrame(loop, canvas);
@@ -317,6 +329,7 @@ function run() {
  */
 function update() {
 	frames++;
+
 
 	if (currentstate !== states.Score) {
 		fgpos = (fgpos - 2) % 14;
