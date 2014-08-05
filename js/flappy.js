@@ -10,6 +10,7 @@ height,
 fgpos = 0,
 frames = 0,
 score = 0,
+pipeGap = 90,
 best = localStorage.getItem("best") || 0,
 
 // State vars //
@@ -167,7 +168,7 @@ pipes = {
 
 				var cx  = Math.min(Math.max(bird.x, p.x), p.x+p.width);
 				var cy1 = Math.min(Math.max(bird.y, p.y), p.y+p.height);
-				var cy2 = Math.min(Math.max(bird.y, p.y+p.height+80), p.y+2*p.height+80);
+				var cy2 = Math.min(Math.max(bird.y, p.y+p.height+pipeGap), p.y+2*p.height+pipeGap);
 				// closest difference
 				var dx  = bird.x - cx;
 				var dy1 = bird.y - cy1;
@@ -201,7 +202,7 @@ pipes = {
 		for (var i = 0, len = this._pipes.length; i < len; i++) {
 			var p = this._pipes[i];
 			s_pipeSouth.draw(ctx, p.x, p.y);
-			s_pipeNorth.draw(ctx, p.x, p.y+80+p.height);
+			s_pipeNorth.draw(ctx, p.x, p.y+pipeGap+p.height);
 		}
 	}
 };
