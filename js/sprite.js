@@ -56,7 +56,7 @@ function initSprites(img) {
 	];
 	
 	s_bg = new Sprite(img,   0, 0, 138, 114);
-	s_bg.color = "#70C5CF"; // save background color
+	s_bg.color = "#70C5CF"; // #70C5CF save background color
 	s_fg = new Sprite(img, 138, 0, 112,  56);
 	
 	s_pipeNorth = new Sprite(img, 251, 0, 26, 200);
