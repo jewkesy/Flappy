@@ -213,6 +213,41 @@ pipes = {
 			s_pipeNorth.draw(ctx, p.x, p.y+pipeGap+p.height);
 		}
 	}
+},
+
+backgroundFx = {
+	setBGColour: function(hour) {
+			switch (hour) {
+				case 21:
+				case 22:
+				case 23:
+				case 0:
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+					ctx.fillStyle = "#000";
+					break;
+				case 5:
+				case 6:
+				case 19:
+				case 20:
+					ctx.fillStyle = "#990099";
+					break;
+				default:
+					ctx.fillStyle = "#70C5CF";
+					break;
+			}
+	},
+	update: function() {
+		if (frames % 100 === 0) {
+			var date = new Date;
+			//var seconds = date.getSeconds();
+			//var minutes = date.getMinutes();
+			var hour = date.getHours();
+			this.setBGColour(hour);
+		}
+	}
 };
 
 /**
@@ -301,7 +336,8 @@ function main() {
 	img.onload = function() {
 		initSprites(this);
 
-	//	ctx.fillStyle = s_bg.color;
+		var hour = new Date().getHours();
+		backgroundFx.setBGColour(hour);
 
 		okbtn = {
 			x: (width - s_buttons.Ok.width)/2,
@@ -326,7 +362,6 @@ function debugLog(txt) {
  */
 function run() {
 	var loop = function() {
-//document.getElementById("consoleMe").innerHTML = frames;
 		update();
 		render();
 		window.requestAnimationFrame(loop, canvas);
@@ -340,12 +375,6 @@ function run() {
 function update() {
 	frames++;
 
-
-
-// var colors = ["#CCCCCC","#333333","#990099"];                
-//   var rand = Math.floor(Math.random()*colors.length);     
-//   ctx.fillStyle =  colors[rand];   
-
 	if (currentstate !== states.Score) {
 		fgpos = (fgpos - 2) % 14;
 	} else {
@@ -358,6 +387,7 @@ function update() {
 	}
 
 	bird.update();
+	backgroundFx.update();
 }
 
 /**
