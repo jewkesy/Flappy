@@ -10,7 +10,10 @@ height,
 fgpos = 0,
 frames = 0,
 score = 0,
+pipeGapMin = 80,
+pipeGapMax = 120,
 pipeGap = 90,
+//pipeGap = pipeGapMax,
 best = localStorage.getItem("best") || 0,
 
 // State vars //
@@ -131,6 +134,7 @@ pipes = {
 	 */
 	reset: function() {
 		this._pipes = [];
+		pipeGap = pipeGapMax;
 	},
 
 	/**
@@ -139,6 +143,7 @@ pipes = {
 	update: function() {
 		// add new pipe each 100 frames
 		if (frames % 100 === 0) {
+
 			// calculate y position
 			var _y = height - (s_pipeSouth.height+s_fg.height+120+200*Math.random());
 			// create and push pipe to array
@@ -164,7 +169,10 @@ pipes = {
 				// collision check, calculates x/y difference and
 				// use normal vector length calculation to determine
 				// intersection
-
+				if (frames % 100 === 0) {
+					//pipeGap = pipeGap - 5;
+					debugLog(pipeGap);
+				}
 
 				var cx  = Math.min(Math.max(bird.x, p.x), p.x+p.width);
 				var cy1 = Math.min(Math.max(bird.y, p.y), p.y+p.height);
@@ -239,12 +247,6 @@ function onpress(evt) {
 // 				mx = evt.touches[0].clientX;
 // 				my = evt.touches[0].clientY;
 // 			}
-// document.getElementById("consoleMe").innerHTML = okbtn.x;
-// document.getElementById("consoleMe").innerHTML += " " + okbtn.y;
-// document.getElementById("consoleMe").innerHTML += " " + mx;
-// document.getElementById("consoleMe").innerHTML += " " + my;
-// document.getElementById("consoleMe").innerHTML += " " + okbtn.width;
-// document.getElementById("consoleMe").innerHTML += " " + okbtn.height;
 // 			// check if within
 // 			if (okbtn.x < mx && mx < okbtn.x + okbtn.width &&
 // 				okbtn.y < my && my < okbtn.y + okbtn.height
@@ -298,7 +300,8 @@ function main() {
 	var img = new Image();
 	img.onload = function() {
 		initSprites(this);
-		ctx.fillStyle = s_bg.color;
+
+	//	ctx.fillStyle = s_bg.color;
 
 		okbtn = {
 			x: (width - s_buttons.Ok.width)/2,
@@ -310,6 +313,12 @@ function main() {
 		run();
 	}
 	img.src = "./res/sheet.png";
+}
+
+function debugLog(txt) {
+	if(window.location.hash) {
+		document.getElementById("consoleMe").innerHTML = txt;
+	}
 }
 
 /**
@@ -331,6 +340,11 @@ function run() {
 function update() {
 	frames++;
 
+
+
+// var colors = ["#CCCCCC","#333333","#990099"];                
+//   var rand = Math.floor(Math.random()*colors.length);     
+//   ctx.fillStyle =  colors[rand];   
 
 	if (currentstate !== states.Score) {
 		fgpos = (fgpos - 2) % 14;
