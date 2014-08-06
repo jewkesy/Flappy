@@ -218,13 +218,11 @@ pipes = {
 	 *                                        drawing
 	 */
 	draw: function(ctx) {
-		if (currentstate != states.Score) {
-			for (var i = 0, len = this._pipes.length; i < len; i++) {
-				var p = this._pipes[i];
-				s_pipeSouth.draw(ctx, p.x, p.y);
-				s_pipeNorth.draw(ctx, p.x, p.y+p.gap+p.height);
-				//console.log(p)
-			}
+		for (var i = 0, len = this._pipes.length; i < len; i++) {
+			var p = this._pipes[i];
+			s_pipeSouth.draw(ctx, p.x, p.y);
+			s_pipeNorth.draw(ctx, p.x, p.y+p.gap+p.height);
+			//console.log(p)
 		}
 	}
 },
