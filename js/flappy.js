@@ -10,9 +10,9 @@ height,
 fgpos = 0,
 frames = 0,
 score = 0,
-pipeGapMin = 80,
-pipeGapMax = 120,
-pipeGap = 90,
+pipeGapMin = 90,
+pipeGapMax = 150,
+pipeGap = pipeGapMax,
 //pipeGap = pipeGapMax,
 best = localStorage.getItem("best") || 0,
 
@@ -142,20 +142,20 @@ pipes = {
 	 */
 	update: function() {
 		// add new pipe each 100 frames
-				if (frames % 100 === 0) {
-				pipeGap = 80;
-			}
-			else
-			{
-				pipeGap = 120;
-			}
 		if (frames % 100 === 0) {
 
 			// calculate y position
 			var _y = height - (s_pipeSouth.height+s_fg.height+120+200*Math.random());
 			// create and push pipe to array
 
+			
 
+			if (pipeGap > pipeGapMin) {
+				pipeGap = pipeGap -5;
+			}
+
+			//console.log('creating pipe at frame: ' + frames + ' and pipgap: ' + pipeGap);
+			//pipeGap = pipeGap - (frames/100);
 
 			this._pipes.push({
 				gap: pipeGap,
