@@ -142,12 +142,23 @@ pipes = {
 	 */
 	update: function() {
 		// add new pipe each 100 frames
+				if (frames % 100 === 0) {
+				pipeGap = 80;
+			}
+			else
+			{
+				pipeGap = 120;
+			}
 		if (frames % 100 === 0) {
 
 			// calculate y position
 			var _y = height - (s_pipeSouth.height+s_fg.height+120+200*Math.random());
 			// create and push pipe to array
+
+
+
 			this._pipes.push({
+				gap: pipeGap,
 				x: 500,
 				y: _y,
 				width: s_pipeSouth.width,
@@ -176,7 +187,7 @@ pipes = {
 
 				var cx  = Math.min(Math.max(bird.x, p.x), p.x+p.width);
 				var cy1 = Math.min(Math.max(bird.y, p.y), p.y+p.height);
-				var cy2 = Math.min(Math.max(bird.y, p.y+p.height+pipeGap), p.y+2*p.height+pipeGap);
+				var cy2 = Math.min(Math.max(bird.y, p.y+p.height+p.gap), p.y+2*p.height+p.gap);
 				// closest difference
 				var dx  = bird.x - cx;
 				var dy1 = bird.y - cy1;
@@ -207,10 +218,13 @@ pipes = {
 	 *                                        drawing
 	 */
 	draw: function(ctx) {
-		for (var i = 0, len = this._pipes.length; i < len; i++) {
-			var p = this._pipes[i];
-			s_pipeSouth.draw(ctx, p.x, p.y);
-			s_pipeNorth.draw(ctx, p.x, p.y+pipeGap+p.height);
+		if (currentstate != states.Score) {
+			for (var i = 0, len = this._pipes.length; i < len; i++) {
+				var p = this._pipes[i];
+				s_pipeSouth.draw(ctx, p.x, p.y);
+				s_pipeNorth.draw(ctx, p.x, p.y+p.gap+p.height);
+				//console.log(p)
+			}
 		}
 	}
 },
@@ -245,6 +259,7 @@ backgroundFx = {
 			//var seconds = date.getSeconds();
 			//var minutes = date.getMinutes();
 			var hour = date.getHours();
+			//console.log(seconds)
 			this.setBGColour(hour);
 		}
 	}
