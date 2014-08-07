@@ -435,7 +435,7 @@ function render() {
 			scrollTextPos = width*1.5;
 		}
 
-		scrollTextPos = scrollTextPos -2;
+		scrollTextPos = scrollTextPos -3;
 		s_text.FlappyBird.draw(ctx, scrollTextPos, s_fg.height+300);
 
 	}
