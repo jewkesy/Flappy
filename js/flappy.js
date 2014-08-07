@@ -7,6 +7,7 @@ ctx,
 width,
 height,
 
+scrollTextPos = 0,
 fgpos = 0,
 frames = 0,
 score = 0,
@@ -335,6 +336,7 @@ function main() {
 
 	canvas.width = width;
 	canvas.height = height;
+	scrollTextPos = width*1.5;
 	if (!(!!canvas.getContext && canvas.getContext("2d"))) {
 		alert("Your browser doesn't support HTML5, please update to latest version");
 	}
@@ -394,6 +396,7 @@ function update() {
 		// set best score to maximum score
 		best = Math.max(best, score);
 		localStorage.setItem("best", best);
+		scrollTextPos = width*1.5;
 	}
 	if (currentstate === states.Game) {
 		pipes.update();
@@ -428,7 +431,13 @@ function render() {
 		s_text.GetReady.draw(ctx, width2 - s_text.GetReady.width/2, height-380);
 
 //s_text.FlappyBird.draw(ctx, frames % 0, s_fg.height+300);
-		s_text.FlappyBird.draw(ctx, width2 - s_text.FlappyBird.width/2, s_fg.height+300);
+		if (scrollTextPos < (0-s_text.FlappyBird.width-width)) {
+			scrollTextPos = width*1.5;
+		}
+
+		scrollTextPos = scrollTextPos -2;
+		s_text.FlappyBird.draw(ctx, scrollTextPos, s_fg.height+300);
+
 	}
 	if (currentstate === states.Score) {
 		// draw gameover text and score board
