@@ -416,7 +416,7 @@ function render() {
 	pipes.draw(ctx);
 	bird.draw(ctx);
 
-	// draw forground sprites
+	// draw foreground sprites
 	s_fg.draw(ctx, fgpos, height - s_fg.height);
 	s_fg.draw(ctx, fgpos+s_fg.width, height - s_fg.height);
 
@@ -427,6 +427,8 @@ function render() {
 		s_splash.draw(ctx, width2 - s_splash.width/2, height - 300);
 		s_text.GetReady.draw(ctx, width2 - s_text.GetReady.width/2, height-380);
 
+//s_text.FlappyBird.draw(ctx, frames % 0, s_fg.height+300);
+		s_text.FlappyBird.draw(ctx, width2 - s_text.FlappyBird.width/2, s_fg.height+300);
 	}
 	if (currentstate === states.Score) {
 		// draw gameover text and score board
