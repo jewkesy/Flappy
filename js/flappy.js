@@ -1,5 +1,7 @@
 var
 
+appVersion = 1.2,
+
 // Game vars //
 
 canvas,
@@ -104,7 +106,7 @@ bird = {
 
 	/**
 	 * Draws bird with rotation to canvas ctx
-	 * 
+	 *
 	 * @param  {CanvasRenderingContext2D} ctx the context used for
 	 *                                        drawing
 	 */
@@ -113,7 +115,7 @@ bird = {
 		// translate and rotate ctx coordinatesystem
 		ctx.translate(this.x, this.y);
 		ctx.rotate(this.rotation);
-		
+
 		var n = this.animation[this.frame];
 		// draws the bird with center in origo
 		s_bird[n].draw(ctx, -s_bird[n].width/2, -s_bird[n].height/2);
@@ -149,7 +151,7 @@ pipes = {
 			var _y = height - (s_pipeSouth.height+s_fg.height+120+200*Math.random());
 			// create and push pipe to array
 
-			
+
 
 			if (pipeGap > pipeGapMin) {
 				pipeGap = pipeGap -5;
@@ -214,7 +216,7 @@ pipes = {
 
 	/**
 	 * Draw all pipes to canvas context.
-	 * 
+	 *
 	 * @param  {CanvasRenderingContext2D} ctx the context used for
 	 *                                        drawing
 	 */
@@ -231,20 +233,20 @@ pipes = {
 backgroundFx = {
 	setBGColour: function(hour) {
 			switch (hour) {
-				case 21:
 				case 22:
 				case 23:
 				case 0:
 				case 1:
 				case 2:
 				case 3:
-				case 4:
 					ctx.fillStyle = "#000";
 					break;
+				case 4:
 				case 5:
 				case 6:
 				case 19:
 				case 20:
+				case 21:
 					ctx.fillStyle = "#990099";
 					break;
 				default:
@@ -252,14 +254,104 @@ backgroundFx = {
 					break;
 			}
 	},
+	setBGGradient: function(hour) {
+		  //ctx.rect(0, 0, canvas.width, canvas.height);
+      // add linear gradient
+      var grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+
+			switch (hour) {
+				case 0:
+grd.addColorStop(0, '#000000');
+grd.addColorStop(1, '#303030');
+					break;
+				case 1:
+grd.addColorStop(0, '#303030');// light blue
+grd.addColorStop(1, '#003366');  // purple
+					break;
+				case 2:
+grd.addColorStop(0, '#003366');// light blue
+grd.addColorStop(1, '#006699');  // purple
+					break;
+				case 3:
+					grd.addColorStop(0, '#006699');// light blue
+					grd.addColorStop(1, '#663300');  // purple
+					break;
+				case 4:
+grd.addColorStop(0, '#663300');// light blue
+grd.addColorStop(1, '#FF9900');  // purple
+					break;
+				case 5:
+grd.addColorStop(0, '#FF9900');// light blue
+grd.addColorStop(1, '#FF9933');  // purple
+					break;
+				case 6:
+grd.addColorStop(0, '#FF9933');// light blue
+grd.addColorStop(1, '#FFFF99');  // purple
+break;
+case 7:
+grd.addColorStop(0, '#FFFF99');// light blue
+grd.addColorStop(1, '#70C5CF');  // purple
+	break;
+case 8:
+case 9:
+case 10:
+case 11:
+case 12:
+case 13:
+case 14:
+case 15:
+case 16:
+grd.addColorStop(0, '#70C5CF');
+grd.addColorStop(1, '#8ED6FF');
+	break;
+case 17:
+grd.addColorStop(0, '#8ED6FF');// light blue
+grd.addColorStop(1, '#99CCFF');  // purple
+	break;
+case 18:
+					grd.addColorStop(0, '#99CCFF');
+					grd.addColorStop(1, '#9999FF');
+					break;
+				case 19:
+					grd.addColorStop(0, '#9999FF');
+					grd.addColorStop(1, '#9966FF');
+					break;
+				case 20:
+					grd.addColorStop(0, '#9966FF');
+					grd.addColorStop(1, '#9933FF');
+					break;
+				case 21:
+					grd.addColorStop(0, '#9933FF');
+					grd.addColorStop(1, '#3333CC');
+					break;
+
+				case 22:
+					grd.addColorStop(0, '#3333CC');
+					grd.addColorStop(1, '#000066');
+					break;
+				case 23:
+					grd.addColorStop(0, '#000066');
+					grd.addColorStop(1, '#000000');
+					break;
+				default:
+					grd.addColorStop(0, '#8ED6FF');  // light blue
+					grd.addColorStop(1, '#004CB3'); // dark blue
+					break;
+			}
+
+      ctx.fillStyle = grd;
+      ctx.fill();
+	},
 	update: function() {
 		if (frames % 100 === 0) {
 			var date = new Date;
 			//var seconds = date.getSeconds();
 			//var minutes = date.getMinutes();
+			//var hour = Math.ceil(date.getSeconds()/2.5);  //for debug
 			var hour = date.getHours();
-			//console.log(seconds)
-			this.setBGColour(hour);
+			//console.log(hour)
+			//this.setBGColour(hour);
+			this.setBGGradient(hour);
 		}
 	}
 };
@@ -267,7 +359,7 @@ backgroundFx = {
 /**
  * Called on mouse or touch press. Update and change state
  * depending on current game state.
- * 
+ *
  * @param  {MouseEvent/TouchEvent} evt tho on press event
  */
 function onpress(evt) {
@@ -351,8 +443,7 @@ function main() {
 	img.onload = function() {
 		initSprites(this);
 
-		var hour = new Date().getHours();
-		backgroundFx.setBGColour(hour);
+		backgroundFx.update();
 
 		okbtn = {
 			x: (width - s_buttons.Ok.width)/2,
@@ -385,7 +476,7 @@ function run() {
 }
 
 /**
- * Update forground, bird and pipes position
+ * Update foreground, bird and pipes position
  */
 function update() {
 	frames++;
@@ -430,14 +521,12 @@ function render() {
 		s_splash.draw(ctx, width2 - s_splash.width/2, height - 300);
 		s_text.GetReady.draw(ctx, width2 - s_text.GetReady.width/2, height-380);
 
-//s_text.FlappyBird.draw(ctx, frames % 0, s_fg.height+300);
 		if (scrollTextPos < (0-s_text.FlappyBird.width-width)) {
 			scrollTextPos = width*1.5;
 		}
 
 		scrollTextPos = scrollTextPos -3;
 		s_text.FlappyBird.draw(ctx, scrollTextPos, s_fg.height+300);
-
 	}
 	if (currentstate === states.Score) {
 		// draw gameover text and score board
@@ -451,7 +540,6 @@ function render() {
 	} else {
 		// draw score to top of canvas
 		s_numberB.draw(ctx, null, 20, score, width2);
-
 	}
 }
 
