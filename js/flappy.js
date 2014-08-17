@@ -1,6 +1,6 @@
 var
 
-appVersion = 1.2,
+appVersion = 0.2,
 
 // Game vars //
 
@@ -209,7 +209,18 @@ pipes = {
 },
 
 backgroundFx = {
+
+ 	skyColours: ["#000000", "#303030", "#003366", "#006699", "#663300", "#FF9900",  // 0 - 5
+	             "#FF9933", "#FFFF99", "#70C5CF", "#8ED6FF", "#004CB3", "#99CCFF",  // 6 - 11
+							 "#9999FF", "#9966FF", "#9933FF", "#3333CC", "#000066", "#000000",  //12 - 17
+							 "#990099", "#990099", "#990099", "#006699", "#003366", "#303030"], //18 - 23
+
 	setBGColour: function(hour) {
+
+
+			ctx.fillStyle = this.skyColours[hour];
+			return;
+
 			switch (hour) {
 				case 22:
 				case 23:
@@ -232,12 +243,15 @@ backgroundFx = {
 					break;
 			}
 	},
-	setBGGradient: function(hour) {
+	setBGGradient: function(hour, minute) {
       // add linear gradient
       var grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-
+//hour = 23
 			switch (hour) {
 				case 0:
+					// grd.addColorStop(0, '#000000');
+					// grd.addColorStop(1, '#303030');
+
 					grd.addColorStop(0, '#000000');
 					grd.addColorStop(1, '#303030');
 					break;
@@ -280,35 +294,73 @@ backgroundFx = {
 				case 16:
 					grd.addColorStop(0, '#70C5CF');
 					grd.addColorStop(1, '#8ED6FF');
+
+
+				//	(#20202f, 0%, #273550, 16%, #416081, 41%, #adacb2, 78%, #eac3a2, 100%)
+// grd.addColorStop(0, '#20202f');
+// grd.addColorStop(0.16, '#273550');
+// grd.addColorStop(0.41, '#416081');
+// grd.addColorStop(0.78, '#adacb2');
+// grd.addColorStop(1, '#eac3a2');
+
+
+
+// #6f749e, 0%, #9a8daf, 31%, #d0a8b9, 58%, #f8bbb1, 80%, #fde6b1, 100%)
+
+
+
 					break;
 				case 17:
 					grd.addColorStop(0, '#8ED6FF');
-					grd.addColorStop(1, '#99CCFF');
+					grd.addColorStop(1, '#6f749e');
 					break;
 				case 18:
-					grd.addColorStop(0, '#99CCFF');
-					grd.addColorStop(1, '#9999FF');
+grd.addColorStop(0, '#6f749e');
+grd.addColorStop(0.31, '#9a8daf');
+grd.addColorStop(0.58, '#d0a8b9');
+grd.addColorStop(0.8, '#f8bbb1');
+grd.addColorStop(1, '#fde6b1');
 					break;
 				case 19:
-					grd.addColorStop(0, '#9999FF');
-					grd.addColorStop(1, '#9966FF');
+grd.addColorStop(0, '#6f749e');
+grd.addColorStop(0.41, '#9a8daf');
+grd.addColorStop(0.68, '#d0a8b9');
+grd.addColorStop(0.9, '#f8bbb1');
+grd.addColorStop(1, '#fde6b1');
 					break;
 				case 20:
-					grd.addColorStop(0, '#9966FF');
-					grd.addColorStop(1, '#9933FF');
+					grd.addColorStop(0, '#000066');
+grd.addColorStop(0, '#6f749e');
+grd.addColorStop(0.41, '#9a8daf');
+grd.addColorStop(0.68, '#d0a8b9');
+grd.addColorStop(0.9, '#f8bbb1');
+grd.addColorStop(1, '#fde6b1');
 					break;
 				case 21:
-					grd.addColorStop(0, '#9933FF');
-					grd.addColorStop(1, '#3333CC');
+					grd.addColorStop(0, '#000066');
+grd.addColorStop(0, '#6f749e');
+grd.addColorStop(0.51, '#9a8daf');
+grd.addColorStop(0.78, '#d0a8b9');
+grd.addColorStop(0.95, '#f8bbb1');
+grd.addColorStop(1, '#fde6b1');
 					break;
 
 				case 22:
-					grd.addColorStop(0, '#3333CC');
-					grd.addColorStop(1, '#000066');
+		//			 (#0f124a, 0%, #1b2360, 16%, #515b80, 42%, #758391, 58%, #e5e3b0, 100%)
+
+grd.addColorStop(0, '#0f124a');
+grd.addColorStop(0.16, '#1b2360');
+grd.addColorStop(0.42, '#515b80');
+grd.addColorStop(0.58, '#758391');
+grd.addColorStop(1, '#e5e3b0');
 					break;
 				case 23:
-					grd.addColorStop(0, '#000066');
-					grd.addColorStop(1, '#000000');
+grd.addColorStop(0, '#000066');
+grd.addColorStop(0.20, '#0f124a');
+grd.addColorStop(0.50, '#1b2360');
+grd.addColorStop(0.80, '#515b80');
+grd.addColorStop(1, '#758391');
+
 					break;
 				default:
 					grd.addColorStop(0, '#8ED6FF');  // light blue
@@ -320,13 +372,15 @@ backgroundFx = {
       ctx.fill();
 	},
 	update: function() {
-		if (frames % 100 === 0) {
+		if (frames % 60 === 0) {
 			var date = new Date;
 			//var seconds = date.getSeconds();
 			//var minutes = date.getMinutes();
-			//var hour = Math.ceil(date.getSeconds()/2.5);  //for debug
 			var hour = date.getHours();
-			//console.log(hour)
+			//var hour = Math.ceil(date.getSeconds()/2.5);  //for debug
+			//if (hour == 24) hour = 0;
+
+			console.log(hour)
 			//this.setBGColour(hour);
 			this.setBGGradient(hour);
 		}
