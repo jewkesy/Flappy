@@ -246,121 +246,117 @@ backgroundFx = {
 	setBGGradient: function(hour, minute) {
       // add linear gradient
       var grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-//hour = 23
+
 			switch (hour) {
 				case 0:
-					// grd.addColorStop(0, '#000000');
-					// grd.addColorStop(1, '#303030');
-
 					grd.addColorStop(0, '#000000');
 					grd.addColorStop(1, '#303030');
 					break;
 				case 1:
-					grd.addColorStop(0, '#303030');
-					grd.addColorStop(1, '#003366');
+					grd.addColorStop(0.85, '#020111');
+					grd.addColorStop(1, '#191621');
 					break;
 				case 2:
-					grd.addColorStop(0, '#003366');
-					grd.addColorStop(1, '#006699');
+					grd.addColorStop(0.6, '#020111');
+					grd.addColorStop(1, '#20202c');
 					break;
 				case 3:
-					grd.addColorStop(0, '#006699');
-					grd.addColorStop(1, '#663300');
+					grd.addColorStop(0.1, '#020111');
+					grd.addColorStop(1, '#3a3a52');
 					break;
 				case 4:
-					grd.addColorStop(0, '#663300');
-					grd.addColorStop(1, '#FF9900');
+					grd.addColorStop(0, '#20202c');
+					grd.addColorStop(1, '#515175');
 					break;
 				case 5:
-					grd.addColorStop(0, '#FF9900');
-					grd.addColorStop(1, '#FF9933');
+					grd.addColorStop(0, '#40405c');
+					grd.addColorStop(0.8, '#6f71aa');
+					grd.addColorStop(1, '#8a76ab');
 					break;
 				case 6:
-					grd.addColorStop(0, '#FF9933');
-					grd.addColorStop(1, '#FFFF99');
+					grd.addColorStop(0, '#4a4969');
+					grd.addColorStop(0.5, '#7072ab');
+					grd.addColorStop(1, '#cd82a0');
 					break;
 				case 7:
-					grd.addColorStop(0, '#FFFF99');
-					grd.addColorStop(1, '#70C5CF');
+					grd.addColorStop(0, '#757abf');
+					grd.addColorStop(0.6, '#8583be');
+					grd.addColorStop(1, '#eab0d1');
 					break;
 				case 8:
+					grd.addColorStop(0, '#82addb');
+					grd.addColorStop(1, '#ebb2b1');
+					break;
 				case 9:
+					grd.addColorStop(0.01, '#94c5f8');
+					grd.addColorStop(0.7, '#a6e6ff');
+					grd.addColorStop(1, '#b1b5ea');
+					break;
 				case 10:
+					grd.addColorStop(0, '#b7eaff');
+					grd.addColorStop(1, '#94dfff');
+					break;
 				case 11:
+					grd.addColorStop(0, '#9be2fe');
+					grd.addColorStop(1, '#67d1fb');
+					break;
 				case 12:
+					grd.addColorStop(0, '#90dffe');
+					grd.addColorStop(1, '#38a3d1');
+					break;
 				case 13:
+					grd.addColorStop(0, '#57c1eb');
+					grd.addColorStop(1, '#246fa8');
+					break;
 				case 14:
+					grd.addColorStop(0, '#2d91c2');
+					grd.addColorStop(1, '#1e528e');
+					break;
 				case 15:
+					grd.addColorStop(0, '#2473ab');
+					grd.addColorStop(0.7, '#1e528e');
+					grd.addColorStop(1, '#5b7983');
+					break;
 				case 16:
-					grd.addColorStop(0, '#70C5CF');
-					grd.addColorStop(1, '#8ED6FF');
-
-
-				//	(#20202f, 0%, #273550, 16%, #416081, 41%, #adacb2, 78%, #eac3a2, 100%)
-// grd.addColorStop(0, '#20202f');
-// grd.addColorStop(0.16, '#273550');
-// grd.addColorStop(0.41, '#416081');
-// grd.addColorStop(0.78, '#adacb2');
-// grd.addColorStop(1, '#eac3a2');
-
-
-
-// #6f749e, 0%, #9a8daf, 31%, #d0a8b9, 58%, #f8bbb1, 80%, #fde6b1, 100%)
-
-
-
+					grd.addColorStop(0, '#1e528e');
+					grd.addColorStop(0.5, '#265889');
+					grd.addColorStop(1, '#9da671');
 					break;
 				case 17:
-					grd.addColorStop(0, '#8ED6FF');
-					grd.addColorStop(1, '#6f749e');
+					grd.addColorStop(0, '#1e528e');
+					grd.addColorStop(0.5, '#728a7c');
+					grd.addColorStop(1, '#e9ce5d');
 					break;
 				case 18:
-grd.addColorStop(0, '#6f749e');
-grd.addColorStop(0.31, '#9a8daf');
-grd.addColorStop(0.58, '#d0a8b9');
-grd.addColorStop(0.8, '#f8bbb1');
-grd.addColorStop(1, '#fde6b1');
+					grd.addColorStop(0, '#154277');
+					grd.addColorStop(0.30, '#576e71');
+					grd.addColorStop(0.7, '#e1c45e');
+					grd.addColorStop(1, '#b26339');
 					break;
 				case 19:
-grd.addColorStop(0, '#6f749e');
-grd.addColorStop(0.41, '#9a8daf');
-grd.addColorStop(0.68, '#d0a8b9');
-grd.addColorStop(0.9, '#f8bbb1');
-grd.addColorStop(1, '#fde6b1');
+					grd.addColorStop(0, '#163C52');
+					grd.addColorStop(0.3, '#4F4F47');
+					grd.addColorStop(0.6, '#C5752D');
+					grd.addColorStop(0.8, '#B7490F');
+					grd.addColorStop(1, '#2F1107');
 					break;
 				case 20:
-					grd.addColorStop(0, '#000066');
-grd.addColorStop(0, '#6f749e');
-grd.addColorStop(0.41, '#9a8daf');
-grd.addColorStop(0.68, '#d0a8b9');
-grd.addColorStop(0.9, '#f8bbb1');
-grd.addColorStop(1, '#fde6b1');
+					grd.addColorStop(0.3, '#071B26');
+					grd.addColorStop(0.8, '#8A3B12');
+					grd.addColorStop(1, '#240E03');
 					break;
 				case 21:
-					grd.addColorStop(0, '#000066');
-grd.addColorStop(0, '#6f749e');
-grd.addColorStop(0.51, '#9a8daf');
-grd.addColorStop(0.78, '#d0a8b9');
-grd.addColorStop(0.95, '#f8bbb1');
-grd.addColorStop(1, '#fde6b1');
+					grd.addColorStop(0.3, '#010A10');
+					grd.addColorStop(0.8, '#59230B');
+					grd.addColorStop(1, '#2F1107');
 					break;
-
 				case 22:
-		//			 (#0f124a, 0%, #1b2360, 16%, #515b80, 42%, #758391, 58%, #e5e3b0, 100%)
-
-grd.addColorStop(0, '#0f124a');
-grd.addColorStop(0.16, '#1b2360');
-grd.addColorStop(0.42, '#515b80');
-grd.addColorStop(0.58, '#758391');
-grd.addColorStop(1, '#e5e3b0');
+					grd.addColorStop(0.5, '#090401');
+					grd.addColorStop(1, '#4B1D06');
 					break;
 				case 23:
-grd.addColorStop(0, '#000066');
-grd.addColorStop(0.20, '#0f124a');
-grd.addColorStop(0.50, '#1b2360');
-grd.addColorStop(0.80, '#515b80');
-grd.addColorStop(1, '#758391');
-
+					grd.addColorStop(0.8, '#00000c');
+					grd.addColorStop(1, '#150800');
 					break;
 				default:
 					grd.addColorStop(0, '#8ED6FF');  // light blue
@@ -380,7 +376,7 @@ grd.addColorStop(1, '#758391');
 			//var hour = Math.ceil(date.getSeconds()/2.5);  //for debug
 			//if (hour == 24) hour = 0;
 
-			console.log(hour)
+			//console.log(hour)
 			//this.setBGColour(hour);
 			this.setBGGradient(hour);
 		}
