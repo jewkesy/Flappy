@@ -245,7 +245,8 @@ backgroundFx = {
 	},
 	setBGGradient: function(hour, minute) {
       // add linear gradient
-      var grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      //var grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+			var grd = ctx.createLinearGradient(0, canvas.width/2, 0, canvas.width);
 
 			switch (hour) {
 				case 0:
@@ -375,7 +376,6 @@ backgroundFx = {
 			var hour = date.getHours();
 			//var hour = Math.ceil(date.getSeconds()/2.5);  //for debug
 			//if (hour == 24) hour = 0;
-
 			//console.log(hour)
 			//this.setBGColour(hour);
 			this.setBGGradient(hour);
