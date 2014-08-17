@@ -67,14 +67,11 @@ bird = {
 		this.frame += frames % n === 0 ? 1 : 0;
 		this.frame %= this.animation.length;
 
-		// in splash state make bird hover up and down and set
-		// rotation to zero
+		// in splash state make bird hover up and down and set rotation to zero
 		if (currentstate === states.Splash) {
-
 			this.y = height - 280 + 5*Math.cos(frames/10);
 			this.rotation = 0;
-
-		} else { // game and score state //
+		} else { // game and score state
 
 			this.velocity += this.gravity;
 			this.y += this.velocity;
@@ -89,17 +86,12 @@ bird = {
 				this.velocity = this._jump;
 			}
 
-			// when bird lack upward momentum increment the rotation
-			// angle
+			// when bird lack upward momentum increment the rotation angle
 			if (this.velocity >= this._jump) {
-
 				this.frame = 1;
 				this.rotation = Math.min(Math.PI/2, this.rotation + 0.3);
-
 			} else {
-
 				this.rotation = -0.3;
-
 			}
 		}
 	},
@@ -107,8 +99,7 @@ bird = {
 	/**
 	 * Draws bird with rotation to canvas ctx
 	 *
-	 * @param  {CanvasRenderingContext2D} ctx the context used for
-	 *                                        drawing
+	 * @param  {CanvasRenderingContext2D} ctx the context used for drawing
 	 */
 	draw: function(ctx) {
 		ctx.save();
@@ -128,9 +119,7 @@ bird = {
  * The pipes
  */
 pipes = {
-
 	_pipes: [],
-	// padding: 80, // TODO: Implement paddle variable
 
 	/**
 	 * Empty pipes array
@@ -146,19 +135,13 @@ pipes = {
 	update: function() {
 		// add new pipe each 100 frames
 		if (frames % 100 === 0) {
-
 			// calculate y position
 			var _y = height - (s_pipeSouth.height+s_fg.height+120+200*Math.random());
+
 			// create and push pipe to array
-
-
-
 			if (pipeGap > pipeGapMin) {
 				pipeGap = pipeGap -5;
 			}
-
-			//console.log('creating pipe at frame: ' + frames + ' and pipgap: ' + pipeGap);
-			//pipeGap = pipeGap - (frames/100);
 
 			this._pipes.push({
 				gap: pipeGap,
@@ -183,10 +166,6 @@ pipes = {
 				// collision check, calculates x/y difference and
 				// use normal vector length calculation to determine
 				// intersection
-				if (frames % 100 === 0) {
-					//pipeGap = pipeGap - 5;
-					debugLog(pipeGap);
-				}
 
 				var cx  = Math.min(Math.max(bird.x, p.x), p.x+p.width);
 				var cy1 = Math.min(Math.max(bird.y, p.y), p.y+p.height);
@@ -217,8 +196,7 @@ pipes = {
 	/**
 	 * Draw all pipes to canvas context.
 	 *
-	 * @param  {CanvasRenderingContext2D} ctx the context used for
-	 *                                        drawing
+	 * @param  {CanvasRenderingContext2D} ctx the context used for drawing
 	 */
 	draw: function(ctx) {
 		for (var i = 0, len = this._pipes.length; i < len; i++) {
@@ -255,60 +233,59 @@ backgroundFx = {
 			}
 	},
 	setBGGradient: function(hour) {
-		  //ctx.rect(0, 0, canvas.width, canvas.height);
       // add linear gradient
       var grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
 
 			switch (hour) {
 				case 0:
-grd.addColorStop(0, '#000000');
-grd.addColorStop(1, '#303030');
+					grd.addColorStop(0, '#000000');
+					grd.addColorStop(1, '#303030');
 					break;
 				case 1:
-grd.addColorStop(0, '#303030');// light blue
-grd.addColorStop(1, '#003366');  // purple
+					grd.addColorStop(0, '#303030');
+					grd.addColorStop(1, '#003366');
 					break;
 				case 2:
-grd.addColorStop(0, '#003366');// light blue
-grd.addColorStop(1, '#006699');  // purple
+					grd.addColorStop(0, '#003366');
+					grd.addColorStop(1, '#006699');
 					break;
 				case 3:
-					grd.addColorStop(0, '#006699');// light blue
-					grd.addColorStop(1, '#663300');  // purple
+					grd.addColorStop(0, '#006699');
+					grd.addColorStop(1, '#663300');
 					break;
 				case 4:
-grd.addColorStop(0, '#663300');// light blue
-grd.addColorStop(1, '#FF9900');  // purple
+					grd.addColorStop(0, '#663300');
+					grd.addColorStop(1, '#FF9900');
 					break;
 				case 5:
-grd.addColorStop(0, '#FF9900');// light blue
-grd.addColorStop(1, '#FF9933');  // purple
+					grd.addColorStop(0, '#FF9900');
+					grd.addColorStop(1, '#FF9933');
 					break;
 				case 6:
-grd.addColorStop(0, '#FF9933');// light blue
-grd.addColorStop(1, '#FFFF99');  // purple
-break;
-case 7:
-grd.addColorStop(0, '#FFFF99');// light blue
-grd.addColorStop(1, '#70C5CF');  // purple
-	break;
-case 8:
-case 9:
-case 10:
-case 11:
-case 12:
-case 13:
-case 14:
-case 15:
-case 16:
-grd.addColorStop(0, '#70C5CF');
-grd.addColorStop(1, '#8ED6FF');
-	break;
-case 17:
-grd.addColorStop(0, '#8ED6FF');// light blue
-grd.addColorStop(1, '#99CCFF');  // purple
-	break;
-case 18:
+					grd.addColorStop(0, '#FF9933');
+					grd.addColorStop(1, '#FFFF99');
+					break;
+				case 7:
+					grd.addColorStop(0, '#FFFF99');
+					grd.addColorStop(1, '#70C5CF');
+					break;
+				case 8:
+				case 9:
+				case 10:
+				case 11:
+				case 12:
+				case 13:
+				case 14:
+				case 15:
+				case 16:
+					grd.addColorStop(0, '#70C5CF');
+					grd.addColorStop(1, '#8ED6FF');
+					break;
+				case 17:
+					grd.addColorStop(0, '#8ED6FF');
+					grd.addColorStop(1, '#99CCFF');
+					break;
+				case 18:
 					grd.addColorStop(0, '#99CCFF');
 					grd.addColorStop(1, '#9999FF');
 					break;
