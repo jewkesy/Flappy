@@ -16,7 +16,6 @@ score = 0,
 pipeGapMin = 90,
 pipeGapMax = 150,
 pipeGap = pipeGapMax,
-//pipeGap = pipeGapMax,
 best = localStorage.getItem("best") || 0,
 
 // State vars //
@@ -209,45 +208,8 @@ pipes = {
 },
 
 backgroundFx = {
-
- 	skyColours: ["#000000", "#303030", "#003366", "#006699", "#663300", "#FF9900",  // 0 - 5
-	             "#FF9933", "#FFFF99", "#70C5CF", "#8ED6FF", "#004CB3", "#99CCFF",  // 6 - 11
-							 "#9999FF", "#9966FF", "#9933FF", "#3333CC", "#000066", "#000000",  //12 - 17
-							 "#990099", "#990099", "#990099", "#006699", "#003366", "#303030"], //18 - 23
-
-	setBGColour: function(hour) {
-
-
-			ctx.fillStyle = this.skyColours[hour];
-			return;
-
-			switch (hour) {
-				case 22:
-				case 23:
-				case 0:
-				case 1:
-				case 2:
-				case 3:
-					ctx.fillStyle = "#000";
-					break;
-				case 4:
-				case 5:
-				case 6:
-				case 19:
-				case 20:
-				case 21:
-					ctx.fillStyle = "#990099";
-					break;
-				default:
-					ctx.fillStyle = "#70C5CF";
-					break;
-			}
-	},
-	setBGGradient: function(hour, minute) {
-      // add linear gradient
-      //var grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+	setBGGradient: function(hour, minute) {      // create linear gradient based upon time of day
 			var grd = ctx.createLinearGradient(0, canvas.width/2, 0, canvas.width);
-
 			switch (hour) {
 				case 0:
 					grd.addColorStop(0, '#000000');
@@ -377,7 +339,6 @@ backgroundFx = {
 			//var hour = Math.ceil(date.getSeconds()/2.5);  //for debug
 			//if (hour == 24) hour = 0;
 			//console.log(hour)
-			//this.setBGColour(hour);
 			this.setBGGradient(hour);
 		}
 	}
