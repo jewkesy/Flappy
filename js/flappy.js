@@ -162,17 +162,17 @@ pipes = {
 
 				score += p.x === bird.x ? 1 : 0;
 
-				// collision check, calculates x/y difference and
-				// use normal vector length calculation to determine
-				// intersection
+				// collision check, calculates x/y difference and use normal vector length calculation to determine intersection
 
 				var cx  = Math.min(Math.max(bird.x, p.x), p.x+p.width);
 				var cy1 = Math.min(Math.max(bird.y, p.y), p.y+p.height);
 				var cy2 = Math.min(Math.max(bird.y, p.y+p.height+p.gap), p.y+2*p.height+p.gap);
+
 				// closest difference
 				var dx  = bird.x - cx;
 				var dy1 = bird.y - cy1;
 				var dy2 = bird.y - cy2;
+
 				// vector length
 				var d1 = dx*dx + dy1*dy1;
 				var d2 = dx*dx + dy2*dy2;
