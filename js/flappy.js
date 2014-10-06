@@ -1,7 +1,7 @@
 var
 
 appVersion = 0.2,
-
+homeUrl = 'http://jewkesy.github.io/Flappy/',
 // Game vars //
 
 canvas,
@@ -392,7 +392,7 @@ function onpress(evt) {
 
 			if (sharebtn.x < mx && mx < sharebtn.x + sharebtn.width && sharebtn.y < my && my < sharebtn.y + sharebtn.height) {
 				location.hash='share'
-				window.open('http://twitter.com/share?url=http://jewkesy.github.io/Flappy/&text=I scored ' + score +  ' on FlappyJS!!')
+				window.open('http://twitter.com/share?url=' + homeUrl + '&text=I scored ' + score +  ' on FlappyJS!!')
 			}
 			else {
 // 			// check if within
@@ -575,8 +575,8 @@ window.onload = function () {
 
 The following links will register the appropriate Likes, Tweets and +1s:
 
-http://www.facebook.com/sharer.php?u=http://example.com
-http://twitter.com/share?url=http://example.com&text=Description
-https://plusone.google.com/_/+1/confirm?hl=en&url=http://example.com
+http://www.facebook.com/sharer.php?u=http://jewkesy.github.io/Flappy/
+http://twitter.com/share?url=http://jewkesy.github.io/Flappy/&text=Description
+https://plusone.google.com/_/+1/confirm?hl=en&url=http://jewkesy.github.io/Flappy/&text=I
 
 */
