@@ -443,6 +443,7 @@ function main() {
 		run();
 	}
 	img.src = "./res/sheet.png";
+	//img.src = "./res/sheet_halloween.png";
 }
 
 function debugLog(txt) {
