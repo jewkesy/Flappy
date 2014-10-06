@@ -400,7 +400,7 @@ function onpress(evt) {
 				pipes.reset();
 				currentstate = states.Splash;
 				score = 0;
-				location.hash='game'
+				//location.hash='game'
 	//		}
 }
 			break;
@@ -473,8 +473,13 @@ function main() {
 
 		run();
 	}
-	img.src = "./res/sheet.png";
-	//img.src = "./res/sheet_halloween.png";
+
+	if (location.hash && location.hash == '#halloween') {
+		img.src = "./res/sheet_halloween.png";
+	}
+	else {
+		img.src = "./res/sheet.png";
+	}
 }
 
 function debugLog(txt) {
