@@ -356,7 +356,6 @@ backgroundFx = {
  * @param  {MouseEvent/TouchEvent} evt tho on press event
  */
 function onpress(evt) {
-//location.hash=evt.type;
 //document.getElementById("consoleMe").innerHTML = evt.type;
 	switch (currentstate) {
 
@@ -385,6 +384,8 @@ function onpress(evt) {
 			// 	mx = evt.originalEvent.touches[0].pageX;
 			// 	my = evt.originalEvent.touches[0].pageY;
 			// }
+  // mx = mx + document.body.scrollLeft + document.documentElement.scrollLeft;
+  // my = my + document.body.scrollTop + document.documentElement.scrollTop;
 
 //location.hash =  mx + 'x' + my;
 //location.hash = width;
@@ -392,14 +393,15 @@ function onpress(evt) {
 			if (sharebtn.x < mx && mx < sharebtn.x + sharebtn.width && sharebtn.y < my && my < sharebtn.y + sharebtn.height) {
 				location.hash='share'
 			}
-
+			else {
 // 			// check if within
 		//	if (okbtn.x < mx && mx < okbtn.x + okbtn.width &&	okbtn.y < my && my < okbtn.y + okbtn.height) {
 				pipes.reset();
 				currentstate = states.Splash;
 				score = 0;
-		//	}
-
+				location.hash='game'
+	//		}
+}
 			break;
 
 	}
@@ -423,6 +425,12 @@ function main() {
 		canvas.style.border = "1px solid #000";
 		evt = "mousedown";
 	}
+
+// // prevent elastic scrolling
+// document.body.addEventListener('touchmove',function(event){
+//   event.preventDefault();
+// },false);	// end body:touchmove
+
 
 	// listen for input event
 	document.addEventListener(evt, onpress);
