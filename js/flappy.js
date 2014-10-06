@@ -392,6 +392,7 @@ function onpress(evt) {
 
 			if (sharebtn.x < mx && mx < sharebtn.x + sharebtn.width && sharebtn.y < my && my < sharebtn.y + sharebtn.height) {
 				location.hash='share'
+				window.open('http://twitter.com/share?url=http://jewkesy.github.io/Flappy/&text=I scored ' + score +  ' on FlappyJS!!')
 			}
 			else {
 // 			// check if within
@@ -467,7 +468,7 @@ function main() {
 			x: (width - s_buttons.Share.width)/2,
 			y: height - 150,
 			width: s_buttons.Share.width,
-			height: s_buttons.Share.height
+			height: s_buttons.Share.height,
 		}
 
 		run();
