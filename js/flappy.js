@@ -33,6 +33,11 @@ states = {
 okbtn,
 
 /**
+* Share button initiated in main()
+*/
+sharebtn,
+
+/**
  * The bird
  */
 bird = {
@@ -351,7 +356,7 @@ backgroundFx = {
  * @param  {MouseEvent/TouchEvent} evt tho on press event
  */
 function onpress(evt) {
-//console.log(evt)
+//location.hash=evt.type;
 //document.getElementById("consoleMe").innerHTML = evt.type;
 	switch (currentstate) {
 
@@ -368,23 +373,32 @@ function onpress(evt) {
 
 		// change state if event within okbtn bounding box
 		case states.Score:
-
+		//	if (evt.type != 'mousedown') return;
 			// get event position
-// 			var mx = evt.offsetX, my = evt.offsetY;
+ 			var mx = evt.offsetX, my = evt.offsetY;
 
-// 			if (mx == null || my == null) {
-// 				mx = evt.touches[0].clientX;
-// 				my = evt.touches[0].clientY;
-// 			}
+			if (mx == null || my == null) {
+				mx = evt.touches[0].clientX;
+				my = evt.touches[0].clientY;
+			}
+			// if (mx == null || my == null) {
+			// 	mx = evt.originalEvent.touches[0].pageX;
+			// 	my = evt.originalEvent.touches[0].pageY;
+			// }
+
+//location.hash =  mx + 'x' + my;
+//location.hash = width;
+
+			if (sharebtn.x < mx && mx < sharebtn.x + sharebtn.width && sharebtn.y < my && my < sharebtn.y + sharebtn.height) {
+				location.hash='share'
+			}
+
 // 			// check if within
-// 			if (okbtn.x < mx && mx < okbtn.x + okbtn.width &&
-// 				okbtn.y < my && my < okbtn.y + okbtn.height
-// 			) {
-
+		//	if (okbtn.x < mx && mx < okbtn.x + okbtn.width &&	okbtn.y < my && my < okbtn.y + okbtn.height) {
 				pipes.reset();
 				currentstate = states.Splash;
 				score = 0;
-			//}
+		//	}
 
 			break;
 
@@ -413,6 +427,7 @@ function main() {
 	// listen for input event
 	document.addEventListener(evt, onpress);
 	document.addEventListener("touchstart", onpress)
+	document.addEventListener("mousedown", onpress)
 
 	canvas.width = width;
 	canvas.height = height;
@@ -426,7 +441,7 @@ function main() {
 	// append canvas to document
 	document.body.appendChild(canvas);
 
-	// initate graphics and okbtn
+	// initate graphics and buttons
 	var img = new Image();
 	img.onload = function() {
 		initSprites(this);
@@ -438,6 +453,13 @@ function main() {
 			y: height - 200,
 			width: s_buttons.Ok.width,
 			height: s_buttons.Ok.height
+		}
+
+		sharebtn = {
+			x: (width - s_buttons.Share.width)/2,
+			y: height - 150,
+			width: s_buttons.Share.width,
+			height: s_buttons.Share.height
 		}
 
 		run();
@@ -522,6 +544,8 @@ function render() {
 		s_text.GameOver.draw(ctx, width2 - s_text.GameOver.width/2, height-400);
 		s_score.draw(ctx, width2 - s_score.width/2, height-340);
 		s_buttons.Ok.draw(ctx, okbtn.x, okbtn.y);
+		s_buttons.Share.draw(ctx, sharebtn.x, sharebtn.y);
+
 		// draw score and best inside the score board
 		s_numberS.draw(ctx, width2-47, height-304, score, null, 10);
 		s_numberS.draw(ctx, width2-47, height-262, best, null, 10);
@@ -536,3 +560,14 @@ function render() {
 window.onload = function () {
 	main();
 };
+
+
+/*
+
+The following links will register the appropriate Likes, Tweets and +1s:
+
+http://www.facebook.com/sharer.php?u=http://example.com
+http://twitter.com/share?url=http://example.com&text=Description
+https://plusone.google.com/_/+1/confirm?hl=en&url=http://example.com
+
+*/
