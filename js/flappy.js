@@ -474,7 +474,7 @@ function main() {
 		run();
 	}
 
-	if (location.hash && location.hash == '#halloween') {
+	if (location.hash && location.hash.toLowerCase() == '#halloween') {
 		img.src = "./res/sheet_halloween.png";
 	}
 	else {
