@@ -1,4 +1,4 @@
-var 
+var
 
 // Sprite vars //
 
@@ -16,11 +16,11 @@ s_numberB;
 
 /**
  * Simple sprite class
- * 
+ *
  * @param {Image}  img    spritesheet image
  * @param {number} x      x-position in spritesheet
  * @param {number} y      y-position in spritesheet
- * @param {number} width  width of sprite 
+ * @param {number} width  width of sprite
  * @param {number} height height of sprite
  */
 function Sprite(img, x, y, width, height) {
@@ -32,7 +32,7 @@ function Sprite(img, x, y, width, height) {
 };
 /**
  * Draw sprite ta canvas context
- * 
+ *
  * @param  {CanvasRenderingContext2D} ctx context used for drawing
  * @param  {number} x   x-position on canvas to draw from
  * @param  {number} y   y-position on canvas to draw from
@@ -44,7 +44,7 @@ Sprite.prototype.draw = function(ctx, x, y) {
 
 /**
  * Initate all sprite
- * 
+ *
  * @param  {Image} img spritesheet image
  */
 function initSprites(img) {
@@ -54,14 +54,14 @@ function initSprites(img) {
 		new Sprite(img, 156, 128, 17, 12),
 		new Sprite(img, 156, 141, 17, 12)
 	];
-	
+
 	s_bg = new Sprite(img,   0, 0, 138, 114);
 	s_bg.color = "#70C5CF"; // #70C5CF save background color
 	s_fg = new Sprite(img, 138, 0, 112,  56);
-	
+
 	s_pipeNorth = new Sprite(img, 251, 0, 26, 200);
 	s_pipeSouth = new Sprite(img, 277, 0, 26, 200);
-	
+
 	s_text = {
 		FlappyBird: new Sprite(img, 59, 114, 96, 22),
 		GameOver:   new Sprite(img, 59, 136, 94, 19),
@@ -77,14 +77,14 @@ function initSprites(img) {
 	}
 
 	s_score  = new Sprite(img, 138,  56, 113, 58);
-	s_splash = new Sprite(img,   0, 114,  59, 49);
+	s_splash = new Sprite(img,   0, 114,  59, 53);
 
 	s_numberS = new Sprite(img, 0, 177, 6,  7);
 	s_numberB = new Sprite(img, 0, 188, 7, 10);
 
 	/**
 	 * Draw number to canvas
-	 * 
+	 *
 	 * @param  {CanvasRenderingContext2D} ctx context used for drawing
 	 * @param  {number} x      x-position
 	 * @param  {number} y      y-position
@@ -96,7 +96,7 @@ function initSprites(img) {
 		num = num.toString();
 
 		var step = this.width + 2;
-		
+
 		if (center) {
 			x = center - (num.length*step-2)/2;
 		}
