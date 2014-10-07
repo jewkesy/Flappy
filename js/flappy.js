@@ -419,12 +419,12 @@ function main() {
 	width = window.innerWidth;
 	height = window.innerHeight;
 
-	var evt = "touchStart";
+	//var evt = "touchStart";
 	if (width >= 500) {
 		width  = 320;
 		height = 480;
 		canvas.style.border = "1px solid #000";
-		evt = "mousedown";
+		//evt = "mousedown";
 	}
 
 // // prevent elastic scrolling
@@ -434,7 +434,7 @@ function main() {
 
 
 	// listen for input event
-	document.addEventListener(evt, onpress);
+	//document.addEventListener(evt, onpress);
 	document.addEventListener("touchstart", onpress)
 	document.addEventListener("mousedown", onpress)
 
