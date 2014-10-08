@@ -416,16 +416,18 @@ function main() {
 	// create canvas and set width/height
 	canvas = document.createElement("canvas");
 
-	width = window.innerWidth;
-	height = window.innerHeight;
+	width = 320; // window.innerWidth;
+	height = 480; //window.innerHeight;
 
-	//var evt = "touchStart";
-	if (width >= 500) {
-		width  = 320;
-		height = 480;
-		canvas.style.border = "1px solid #000";
-		//evt = "mousedown";
-	}
+//location.hash = width + 'x' + height;
+
+	// var evt = "touchStart";
+	// if (width >= 500) {
+	// 	width  = 320;
+	// 	height = 480;
+	// 	canvas.style.border = "1px solid #000";
+	// 	evt = "mousedown";
+	// }
 
 // // prevent elastic scrolling
 // document.body.addEventListener('touchmove',function(event){
@@ -511,7 +513,12 @@ function update() {
 	} else {
 		// set best score to maximum score
 		best = Math.max(best, score);
-		localStorage.setItem("best", best);
+		try {		//this is needed for safari private browsing
+			localStorage.setItem("best", best);
+		}
+		catch(err) {
+			//document.getElementById("consoleMe").innerHTML = err.message;
+		}
 		scrollTextPos = width*1.5;
 	}
 	if (currentstate === states.Game) {
