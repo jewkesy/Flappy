@@ -478,7 +478,18 @@ function main() {
 		img.src = "./res/sheet_halloween.png";
 	}
 	else {
-		img.src = "./res/sheet.png";
+		var date = new Date;
+		var hour = date.getHours();
+
+		console.log(hour)
+		if (hour >= 18) {
+			img.src = "./res/sheet_halloween.png";
+		} else if (hour <= 6) {
+			img.src = "./res/sheet_halloween.png";
+		}
+		else {
+			img.src = "./res/sheet.png";
+		}
 	}
 }
 
