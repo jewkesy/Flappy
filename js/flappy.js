@@ -416,18 +416,16 @@ function main() {
 	// create canvas and set width/height
 	canvas = document.createElement("canvas");
 
-	width = 320; // window.innerWidth;
-	height = 480; //window.innerHeight;
+	width = window.innerWidth;
+	height = window.innerHeight;
 
-//location.hash = width + 'x' + height;
-
-	// var evt = "touchStart";
-	// if (width >= 500) {
-	// 	width  = 320;
-	// 	height = 480;
-	// 	canvas.style.border = "1px solid #000";
-	// 	evt = "mousedown";
-	// }
+	//var evt = "touchStart";
+	if (width >= 500) {
+		width  = 320;
+		height = 480;
+		canvas.style.border = "1px solid #000";
+		//evt = "mousedown";
+	}
 
 // // prevent elastic scrolling
 // document.body.addEventListener('touchmove',function(event){
@@ -513,11 +511,10 @@ function update() {
 	} else {
 		// set best score to maximum score
 		best = Math.max(best, score);
-		try {		//this is needed for safari private browsing
+		try {
 			localStorage.setItem("best", best);
-		}
-		catch(err) {
-			//document.getElementById("consoleMe").innerHTML = err.message;
+		} catch(err) {
+			//needed for safari private browsing mode
 		}
 		scrollTextPos = width*1.5;
 	}
