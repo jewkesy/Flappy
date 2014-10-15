@@ -480,11 +480,11 @@ function main() {
 	else {
 		var date = new Date;
 		var hour = date.getHours();
+		var month = date.getMonth();
 
-		console.log(hour)
-		if (hour >= 18) {
+		if (month == 9 && hour >= 18) {
 			img.src = "./res/sheet_halloween.png";
-		} else if (hour <= 6) {
+		} else if (month == 9 && hour <= 6) {
 			img.src = "./res/sheet_halloween.png";
 		}
 		else {
