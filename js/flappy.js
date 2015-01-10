@@ -211,7 +211,52 @@ pipes = {
 		}
 	}
 },
+foregroundFx = {
+	_flakes: [],
+	_flakeTimer: null,
+	_maxFlakes: 10, // Here you may set max flakes to be created
+	init: function() {
+		this._flakeTimer = setInterval(this.addFlake(this._maxFlakes), 500);
+	},
+	addFlake: function(maxFlakes) {
+		console.log(frames);
+		// this._flakes.push("test");
+		console.log(this._flakes);
+		this._flakes.push({
+			id: this._flakes.length + 1,
+			x: Math.round(Math.random() * width),
+			y: -10,
+			drift: Math.random(),
+			speed: Math.round(Math.random() * 5) + 1,
+			size: (Math.random() * 3) + 2
+		});
+		console.log(this._flakes);
+		//if (this._flakes.length >= maxFlakes)
+				//clearInterval(this._flakeTimer);
+	},
+	reset: function() {
+		this._flakes = [];
+	},
+	update: function() {
+		//console.log(this._flakes);
+		for (var i = 0; i < this._flakes.length; i++) {
+				if (this._flakes[i].y < ctx.canvas.height) {
+						this._flakes[i].y += this._flakes[i].speed;
+						if (this._flakes[i].y > ctx.canvas.height)
+								this._flakes[i].y = -5;
+						this._flakes[i].x += this._flakes[i].drift;
+						if (this._flakes[i].x > ctx.canvas.width)
+								this._flakes[i].x = 0;
+				}
 
+		}
+		// for (var i = 0; i < this._flakes.length; i++) {
+		// 		ctx.fillRect(_flakes[i].x, _flakes[i].y, _flakes[i].size, _flakes[i].size);
+		// }
+
+		//ctx.drawImage(ctx, 0, 0, width, height);
+	}
+},
 backgroundFx = {
 	setBGGradient: function(hour, minute) {      // create linear gradient based upon time of day
 			var grd = ctx.createLinearGradient(0, canvas.width/2, 0, canvas.width);
@@ -338,12 +383,7 @@ backgroundFx = {
 	update: function() {
 		if (frames % 60 === 0) {
 			var date = new Date;
-			//var seconds = date.getSeconds();
-			//var minutes = date.getMinutes();
 			var hour = date.getHours();
-			//var hour = Math.ceil(date.getSeconds()/2.5);  //for debug
-			//if (hour == 24) hour = 0;
-			//console.log(hour)
 			this.setBGGradient(hour);
 		}
 	}
@@ -427,12 +467,6 @@ function main() {
 		//evt = "mousedown";
 	}
 
-// // prevent elastic scrolling
-// document.body.addEventListener('touchmove',function(event){
-//   event.preventDefault();
-// },false);	// end body:touchmove
-
-
 	// listen for input event
 	//document.addEventListener(evt, onpress);
 	document.addEventListener("touchstart", onpress)
@@ -455,7 +489,9 @@ function main() {
 	img.onload = function() {
 		initSprites(this);
 
-		backgroundFx.update();
+		//backgroundFx.update();
+		foregroundFx.init();
+		//foregroundFx.update();
 
 		okbtn = {
 			x: (width - s_buttons.Ok.width)/2,
@@ -535,6 +571,7 @@ function update() {
 
 	bird.update();
 	backgroundFx.update();
+	foregroundFx.update();
 }
 
 /**
@@ -590,9 +627,7 @@ window.onload = function () {
 	main();
 };
 
-
 /*
-
 The following links will register the appropriate Likes, Tweets and +1s:
 
 http://www.facebook.com/sharer.php?u=http://jewkesy.github.io/Flappy/
