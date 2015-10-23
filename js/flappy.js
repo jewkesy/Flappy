@@ -219,9 +219,9 @@ foregroundFx = {
 		this._flakeTimer = setInterval(this.addFlake(this._maxFlakes), 500);
 	},
 	addFlake: function(maxFlakes) {
-		console.log(frames);
+		// console.log(frames);
 		// this._flakes.push("test");
-		console.log(this._flakes);
+		// console.log(this._flakes);
 		this._flakes.push({
 			id: this._flakes.length + 1,
 			x: Math.round(Math.random() * width),
@@ -230,7 +230,7 @@ foregroundFx = {
 			speed: Math.round(Math.random() * 5) + 1,
 			size: (Math.random() * 3) + 2
 		});
-		console.log(this._flakes);
+		// console.log(this._flakes);
 		//if (this._flakes.length >= maxFlakes)
 				//clearInterval(this._flakeTimer);
 	},
