@@ -455,7 +455,6 @@ function onpress(evt) {
  * Starts and initiate the game
  */
 function main() {
-	try {
     // create canvas and set width/height
     canvas = document.createElement("canvas");
 
@@ -511,9 +510,6 @@ function main() {
         }
 
         run();
-    }catch(err) {
-	  document.getElementById("consoleMe").innerHTML = err.message;
-	}
     }
 
     if (location.hash && location.hash.toLowerCase() == '#halloween') {
