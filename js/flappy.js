@@ -624,6 +624,7 @@ function render() {
 
 // start and run the game
 window.onload = function() {
+	document.getElementById("consoleMe").innerHTML += "Launching";
     main();
 };
 
