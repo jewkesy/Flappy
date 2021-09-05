@@ -27,8 +27,8 @@
 
 	<script src="./js/alexa.js"></script> -->
 	<script type="text/javascript">
-		window.onerror = function(e){
-		  document.getElementById('consoleMe').innerHTML = e.toString();
+		window.onerror = function(msg, url, line, col, error){
+		  document.getElementById('consoleMe').innerHTML = msg.toString() + " line:" + line;
 		}
 	</script>
 

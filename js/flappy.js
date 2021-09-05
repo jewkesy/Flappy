@@ -396,7 +396,7 @@ backgroundFx = {
  * @param  {MouseEvent/TouchEvent} evt tho on press event
  */
 function onpress(evt) {
-//document.getElementById("consoleMe").innerHTML = evt.type;
+document.getElementById("consoleMe").innerHTML = evt.type;
 	switch (currentstate) {
 
 		// change state and update bird velocity
