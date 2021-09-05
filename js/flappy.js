@@ -16,7 +16,7 @@ score = 0,
 pipeGapMin = 90,
 pipeGapMax = 150,
 pipeGap = pipeGapMax,
-//best = localStorage.getItem("best") || 0,
+best = 0,
 
 // State vars //
 
