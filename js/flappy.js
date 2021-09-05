@@ -468,7 +468,8 @@ function main() {
 	}
 
 	// listen for input event
-	//document.addEventListener(evt, onpress);
+	document.addEventListener(evt, onpress);
+	document.addEventListener("click", onpress)
 	document.addEventListener("touchstart", onpress)
 	document.addEventListener("mousedown", onpress)
 
