@@ -16,7 +16,7 @@ score = 0,
 pipeGapMin = 90,
 pipeGapMax = 150,
 pipeGap = pipeGapMax,
-best = localStorage.getItem("best") || 0,
+//best = localStorage.getItem("best") || 0,
 
 // State vars //
 
@@ -558,11 +558,11 @@ function update() {
 	} else {
 		// set best score to maximum score
 		best = Math.max(best, score);
-		try {
-			localStorage.setItem("best", best);
-		} catch(err) {
-			//needed for safari private browsing mode
-		}
+		// try {
+		// 	localStorage.setItem("best", best);
+		// } catch(err) {
+		// 	//needed for safari private browsing mode
+		// }
 		scrollTextPos = width*1.5;
 	}
 	if (currentstate === states.Game) {
